@@ -8,10 +8,15 @@ public class AudioAnalizer : MonoBehaviour
     private AudioSource audioSource;
     public float[] samples=new float[512];
     public float[] frequencyBand=new float[8];
+    public float[] bandBuffer=new float[8];
+    private float[] bufferDrecrease=new float[8];
+
 
     public GameObject audioCubePrefab;
     List<GameObject> audioCubes=new List<GameObject>();
-    Vector3 cubeScale=Vector3.one;
+    List<GameObject> audioCubeBuffer = new List<GameObject>();
+
+    Vector3 cubeScale =Vector3.one;
     private void Awake()
     {
         audioSource=GetComponent<AudioSource>();
@@ -29,6 +34,11 @@ public class AudioAnalizer : MonoBehaviour
         for (int i = 0; i < frequencyBand.Length; i++)
         {
             audioCubes.Add(Instantiate(audioCubePrefab,transform.position+Vector3.right*i,Quaternion.identity));
+
+        }
+        for (int i = 0; i < bandBuffer.Length; i++)
+        {
+            audioCubeBuffer.Add(Instantiate(audioCubePrefab, transform.position+Vector3.forward*-4 + Vector3.right * i, Quaternion.identity));
 
         }
     }
@@ -66,8 +76,11 @@ public class AudioAnalizer : MonoBehaviour
     {
         GetAudioSamples();
         MakeFrequencyBands();
+        BandBuffer();
+
 
         DisplayAudioCubes();
+        DisplayBandBuffer();
 
     }
 
@@ -78,5 +91,36 @@ public class AudioAnalizer : MonoBehaviour
             cubeScale.y=frequencyBand[i];
             audioCubes[i].transform.localScale= cubeScale;
         }
+    }
+
+    void DisplayBandBuffer()
+    {
+        for (int i = 0; i < audioCubeBuffer.Count; i++)
+        {
+            cubeScale.y = bandBuffer[i];
+            audioCubeBuffer[i].transform.localScale = cubeScale;
+        }
+    }
+
+    void BandBuffer()
+    {
+        for (int g = 0; g < frequencyBand.Length; g++)
+        {
+            if(frequencyBand[g]>bandBuffer[g])
+            {
+                bandBuffer[g]=frequencyBand[g];
+                bufferDrecrease[g]=0.005f;
+
+            }
+
+            if (frequencyBand[g] < bandBuffer[g])
+            {
+                bandBuffer[g] -= bufferDrecrease[g];
+                bufferDrecrease[g] *=1.2f;
+
+            }
+        }
+        
+
     }
 }
