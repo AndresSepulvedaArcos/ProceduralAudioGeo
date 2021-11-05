@@ -13,6 +13,7 @@ public class TetraedroGenerator : MonoBehaviour
     public List<int> triangles= new List<int>();
 
     Mesh mesh;
+    public bool bDisplayVertexInfo;
     public float normalDisplaySize=2;
 
     private void Awake()
@@ -29,7 +30,7 @@ public class TetraedroGenerator : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-
+        if(!bDisplayVertexInfo)return;
         for (int i = 0; i < vertices.Count; i++)
         {
             Vector3 startPosition=transform.TransformPoint( vertices[i]);
@@ -61,6 +62,7 @@ public class TetraedroGenerator : MonoBehaviour
         vertices.Add(new Vector3(0,0,0));
         vertices.Add(new Vector3(0.5f, 1, 0.5f));
         vertices.Add(new Vector3(1, 0,0));
+
         vertices.Add(new Vector3(.5f, 0, 1));
     }
     protected virtual void GenerateTriangles()
