@@ -7,6 +7,8 @@ using UnityEngine;
 public class GenerateQuad : MonoBehaviour
 {
     public List<Vector3> vertices = new List<Vector3>();
+    public Vector2[] uvs=new Vector2[4];
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +19,19 @@ public class GenerateQuad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GenerateUV();
         GenerateMesh();
     }
+    void GenerateUV()
+    {
 
+        for (int i = 0; i < vertices.Count; i++)
+        {
+            uvs[i] = vertices[i];
+
+        }
+
+    }
     void GenerateMesh()
     { 
         Mesh mesh = new Mesh();
@@ -30,10 +42,16 @@ public class GenerateQuad : MonoBehaviour
         };
 
         mesh.SetTriangles(triangles, 0);
+
+        mesh.SetUVs(0,uvs);
+
         mesh.RecalculateNormals();
+       
         GetComponent<MeshFilter>().mesh = mesh;
 
 
 
     }
+
+
 }
