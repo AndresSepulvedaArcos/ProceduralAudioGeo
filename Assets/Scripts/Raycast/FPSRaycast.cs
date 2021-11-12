@@ -15,10 +15,14 @@ public class FPSRaycast : MonoBehaviour
        Ray ray= Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
-        if(Physics.Raycast(ray,out hit))
+        Debug.DrawLine(ray.origin,ray.direction*100,Color.red);
+     // GetComponent<LineRenderer>().SetPosition(0,ray.origin);
+       // GetComponent<LineRenderer>().SetPosition(1, ray.origin+ ray.direction * 100);
+        
+        if (Physics.Raycast(ray,out hit))
         {
              
-            hit.transform.GetComponent<MeshPainter>()?.PaintVertexHit(hit);
+            hit.transform.GetComponent<MeshPainter>()?.PaintVertexHit(hit,ray);
 
 
         }else

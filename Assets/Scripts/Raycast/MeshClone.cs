@@ -21,9 +21,14 @@ public class MeshClone : MonoBehaviour
         meshFilter = GetComponent<MeshFilter>();
 
     }
+    private void Start()
+    {
+      
+    }
 
     void CloneMesh()
     {
+        if(Application.isPlaying)return;
         if(meshReference==null)return;
         vertices.Clear();
         triangles.Clear();
@@ -54,7 +59,7 @@ public class MeshClone : MonoBehaviour
 
 
     }
-
+   
     private void Update()
     {
         CloneMesh();
