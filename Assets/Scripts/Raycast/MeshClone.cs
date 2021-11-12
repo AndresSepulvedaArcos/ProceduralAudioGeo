@@ -31,9 +31,21 @@ public class MeshClone : MonoBehaviour
         vertices.AddRange(meshReference.vertices);
         triangles.AddRange(meshReference.triangles);
 
+        Color[] vertexColors= new Color[vertices.Count];
+
+        for (int i = 0; i < vertexColors.Length; i++)
+        {
+           
+            vertexColors[i]= Color.white;
+        }
+
+
         mesh = new Mesh();
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
+        mesh.SetColors(vertexColors);
+
+
 
 
         mesh.RecalculateNormals();
