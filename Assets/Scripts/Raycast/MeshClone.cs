@@ -45,12 +45,12 @@ public class MeshClone : MonoBehaviour
         mesh.SetTriangles(triangles, 0);
         mesh.SetColors(vertexColors);
 
-
-
-
+         
         mesh.RecalculateNormals();
 
         meshFilter.mesh = mesh;
+
+        GetComponent<MeshCollider>().sharedMesh=meshFilter.sharedMesh;
 
 
     }
