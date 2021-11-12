@@ -10,8 +10,8 @@ public class DetectionCone : MonoBehaviour
 {
     MeshRenderer meshRenderer;
     MeshFilter meshFilter;
-    private List<Vector3> vertices = new List<Vector3>();
-    private List<int> triangles = new List<int>();
+    public List<Vector3> vertices = new List<Vector3>();
+    public List<int> triangles = new List<int>();
 
     Mesh mesh;
 
@@ -60,7 +60,9 @@ public class DetectionCone : MonoBehaviour
 
         float angleMod=0;
         float angleIncrement=angle/faces;
+        Debug.Log(angleIncrement);
         RaycastHit hit;
+        vertices.Add(Vector3.zero);
         for (int i = 0; i < faces; i++)
         {
 
@@ -68,14 +70,16 @@ public class DetectionCone : MonoBehaviour
         
             for (int j = 0; j < 2; j++)
             {
-                destination = Quaternion.Euler(0,  j==0?angleMod:angleMod+angleIncrement, 0) * Vector3.forward * coneDistance;
-                if (Physics.Raycast(transform.TransformPoint(origin), destination, out hit))
+                destination = Quaternion.Euler(0,  j==0?angleMod:angleMod+angleIncrement, 0) * Vector3.forward ;
+                if (Physics.Raycast(transform.TransformPoint(origin), transform.TransformDirection(destination.normalized)  , out hit,coneDistance))
                 {
-
+                    vertices.Add(transform.InverseTransformPoint(hit.point));
                     Debug.DrawLine(transform.TransformPoint(origin), hit.point);
                 }
                 else
                 {
+                    vertices.Add(destination);
+
                     Debug.DrawLine(transform.TransformPoint(origin), transform.TransformPoint(destination));
 
                 }
@@ -93,6 +97,14 @@ public class DetectionCone : MonoBehaviour
     protected virtual void GenerateTriangles()
     {
        triangles.Clear();
+
+        for (int i = 1; i <= faces; i++)
+        {
+            triangles.Add(0);
+            triangles.Add(i);
+            triangles.Add(i+1);
+
+        }
 
 
 

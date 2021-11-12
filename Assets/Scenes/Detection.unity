@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373142163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0, z: 4.73}
+  m_LocalPosition: {x: 2.597, y: 0, z: 1.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -250,9 +250,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371b0f45ac9bfcc46acce92955d2deb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 326
+  vertices:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0.7431448, y: 0, z: 0.66913056}
+  triangles: 000000000100000002000000
+  angle: 48
   coneDistance: 2.02
-  sides: 30
+  sides: 3
 --- !u!33 &381286102
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -260,7 +265,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381286100}
-  m_Mesh: {fileID: 1629253584}
+  m_Mesh: {fileID: 1012285120}
 --- !u!23 &381286103
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -310,13 +315,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381286100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.092}
+  m_LocalPosition: {x: 0, y: 0, z: 0.589}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1629253584
+--- !u!43 &1012285120
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,14 +332,14 @@ Mesh:
   m_SubMeshes:
   - serializedVersion: 2
     firstByte: 0
-    indexCount: 0
+    indexCount: 3
     topology: 0
     baseVertex: 0
     firstVertex: 0
-    vertexCount: 0
+    vertexCount: 3
     localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
+      m_Center: {x: 0.3715724, y: 0, z: 0.5}
+      m_Extent: {x: 0.3715724, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -351,13 +356,17 @@ Mesh:
   m_KeepVertices: 1
   m_KeepIndices: 1
   m_IndexFormat: 0
-  m_IndexBuffer: 
+  m_IndexBuffer: 000001000200
   m_VertexData:
     serializedVersion: 3
-    m_VertexCount: 0
+    m_VertexCount: 3
     m_Channels:
     - stream: 0
       offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
       format: 0
       dimension: 3
     - stream: 0
@@ -408,12 +417,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 0
-    _typelessdata: 
+    m_DataSize: 72
+    _typelessdata: 000000000000000000000000000000000000803f0000000000000000000000000000803f000000000000803f00000000bd3e3e3f00000000244c2b3f000000000000803f00000000
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -467,8 +472,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0.3715724, y: 0, z: 0.5}
+    m_Extent: {x: 0.3715724, y: 0, z: 0.5}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
